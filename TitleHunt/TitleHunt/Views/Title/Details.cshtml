@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TitleHunt.Models.TitleView>
+@{
+    ViewBag.Title = "Details";
+    bool bDisplayRec = true;
+    string genreString = "";
+    string genre = "";
+}
+@foreach (var item in Model)
+{
+    if (bDisplayRec)
+    {
+
+        
+    <table width="100%" cellpadding="0">
+        <tr>
+            <td width="35%" valign="top">
+            <h1>@Html.DisplayFor(model => item.TitleName)&nbsp;(@Html.DisplayFor(model => item.ReleaseYear))</h1><br />
+                <img src="../../Content/images/coming_soon.jpg" /><br />
+                
+            </td>
+            <td valign=top>
+                <br /><br /><br />
+                <h3>Storyline:</h3>
+                @Html.Partial("_StoryLine")
+            </td>
+        </tr>
+        <tr>
+            <td valign=top>          
+                <h3>Director(s):</h3>      
+                @Html.Partial("_MovieCast")
+            </td>
+            <td valign=top>
+                <table border=0 width=70%>
+                    <tr>
+                        <td valign=top>
+                                @Html.Partial("_Awards")       
+                        </td>
+                    </tr>
+                 </table>
+            </td>
+        </tr>
+    </table>
+        bDisplayRec = false;
+    }
+ 
+}

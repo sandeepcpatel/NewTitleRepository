@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TitleHunt.Models.TitleView>
+
+@{
+    ViewBag.Title = "Details";
+    bool bDisplayRec = true;
+}
+@foreach (var item in Model)
+{
+    if (bDisplayRec)
+    {
+    <table width="100%" cellpadding="50">
+        <tr>
+            <td>                
+                @Html.DisplayFor(model => item.Description)                
+            </td>
+        </tr>
+    </table>
+        bDisplayRec = false;
+    }
+}

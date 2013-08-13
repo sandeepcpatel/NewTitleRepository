@@ -1,0 +1,68 @@
+﻿@using (Html.BeginForm("SearchDB", "Title", FormMethod.Post))
+    {
+    
+    <table border="0" cellpadding="10" width="55%" cellspacing="0">
+        <tr>
+            <td>
+                Search Title:
+            </td>
+            <td colspan="6" valign=middle>
+                @Html.TextBox("Search")
+
+                <input type=submit value="Search" />
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Most popular Genres:
+            </td>
+            <td>
+                @Html.ActionLink("Action", "Browse", new { Genre = "Action" })
+            </td>
+            <td>
+                @Html.ActionLink("Comedy", "Browse", new { Genre = "Comedy" })
+            </td>
+            <td>
+                @Html.ActionLink("Drama", "Browse", new { Genre = "Drama" })
+            </td>
+            <td>
+                @Html.ActionLink("Family", "Browse", new { Genre = "Family" })
+            </td>
+            <td>
+                @Html.ActionLink("More...", "ComingSoon")
+            </td>
+        </tr>
+        <tr>
+            <td colspan=10>
+                @Html.ActionLink("A", "AlphaBrowse", new { Alpha = "A" })&nbsp;&nbsp;
+                @Html.ActionLink("B", "AlphaBrowse", new { Alpha = "B" })&nbsp;&nbsp;
+                @Html.ActionLink("C", "AlphaBrowse", new { Alpha = "C" })&nbsp;&nbsp;
+                @Html.ActionLink("D", "AlphaBrowse", new { Alpha = "D" })&nbsp;&nbsp;
+                @Html.ActionLink("E", "AlphaBrowse", new { Alpha = "E" })&nbsp;&nbsp;
+                @Html.ActionLink("F", "AlphaBrowse", new { Alpha = "F" })&nbsp;&nbsp;
+                @Html.ActionLink("G", "AlphaBrowse", new { Alpha = "G" })&nbsp;&nbsp;
+                @Html.ActionLink("H", "AlphaBrowse", new { Alpha = "H" })&nbsp;&nbsp;
+                @Html.ActionLink("I", "AlphaBrowse", new { Alpha = "I" })&nbsp;&nbsp;
+                @Html.ActionLink("J", "AlphaBrowse", new { Alpha = "J" })&nbsp;&nbsp;
+                @Html.ActionLink("K", "AlphaBrowse", new { Alpha = "K" })&nbsp;&nbsp;
+                @Html.ActionLink("L", "AlphaBrowse", new { Alpha = "L" })&nbsp;&nbsp;
+                @Html.ActionLink("M", "AlphaBrowse", new { Alpha = "M" })&nbsp;&nbsp;
+                @Html.ActionLink("N", "AlphaBrowse", new { Alpha = "N" })&nbsp;&nbsp;
+                @Html.ActionLink("O", "AlphaBrowse", new { Alpha = "O" })&nbsp;&nbsp;
+                @Html.ActionLink("P", "AlphaBrowse", new { Alpha = "P" })&nbsp;&nbsp;
+                @Html.ActionLink("Q", "AlphaBrowse", new { Alpha = "Q" })&nbsp;&nbsp;
+                @Html.ActionLink("R", "AlphaBrowse", new { Alpha = "R" })&nbsp;&nbsp;
+                @Html.ActionLink("S", "AlphaBrowse", new { Alpha = "S" })&nbsp;&nbsp;
+                @Html.ActionLink("T", "AlphaBrowse", new { Alpha = "T" })&nbsp;&nbsp;
+                @Html.ActionLink("U", "AlphaBrowse", new { Alpha = "U" })&nbsp;&nbsp;
+                @Html.ActionLink("V", "AlphaBrowse", new { Alpha = "V" })&nbsp;&nbsp;
+                @Html.ActionLink("W", "AlphaBrowse", new { Alpha = "W" })&nbsp;&nbsp;
+                @Html.ActionLink("X", "AlphaBrowse", new { Alpha = "X" })&nbsp;&nbsp;
+                @Html.ActionLink("Y", "AlphaBrowse", new { Alpha = "Y" })&nbsp;&nbsp;
+                @Html.ActionLink("Z", "AlphaBrowse", new { Alpha = "Z" })&nbsp;&nbsp;
+                
+            </td>
+        </tr>
+    </table>
+}

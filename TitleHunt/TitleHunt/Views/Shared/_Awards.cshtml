@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TitleHunt.Models.TitleView>
+
+@{
+    ViewBag.Title = "Details";
+    bool bDisplayRec = true;
+    bool bDisplayNom = true;
+    
+    string award = "";
+    string awardString = "";
+    string nomString = "";
+}
+@foreach (var item in Model)
+{
+    if (item.Award != null)
+    {
+        
+        award = item.Award;
+        
+        if (item.AwardWon == true)
+        {
+            bool bAwardExists = award.All(a => awardString.Contains(a));
+            if (!(bAwardExists))
+            {
+                if (bDisplayRec)
+                { 
+                    
+                    <h3>Awards won:</h3>
+                    bDisplayRec = false;
+                }
+                awardString = awardString + "," + award;
+            
+                @item.Award;<br />
+                        
+            
+            }
+        }
+        
+        if (item.AwardWon == false)
+        {
+        
+            bool bAwardNominated = award.All(a => nomString.Contains(a));
+            if (!(bAwardNominated))
+            {
+                if (bDisplayNom)
+                { 
+                    <h3>Nominations:</h3>
+                    
+                    bDisplayNom = false;
+                }
+                nomString = nomString + "," + award;
+                    @item.Award;<br />
+            }
+        
+        
+        }
+        
+    }
+
+
+}
+
+

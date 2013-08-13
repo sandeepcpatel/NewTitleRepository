@@ -1,0 +1,213 @@
+﻿@model IEnumerable<TitleHunt.Models.TitleView>
+@{
+    var bgColor = "gainsboro";
+    int counter = 1;
+    int prevTitleId = 0;
+    int titleId = 0;
+    string prevGenre = "";
+    string genre = "";
+    string genreString = "";
+    int? prevRelYear = 0;
+    int? relYear = 0;
+    string description = "";
+    string prevDescription = "";
+    string titleName = "";
+    string prevTitleName = "";
+
+    string prevProducer = "";
+    string director = "";
+    string prevDirector = "";
+    string prodString = "";
+    string dirString = "";
+    string role = "";
+    string prevRole = "";
+    string partName = "";
+    string prevPartName = "";
+    bool bRecFound = false;
+    bool bShowTable = true;
+    
+}
+@Html.Partial("_GenreMenu")
+<p>
+    &nbsp;</p>
+<table cellpadding="5" width="100%">
+    <tr>
+        <th width="5%">
+            #
+        </th>
+        <th width="30%">
+            Title
+        </th>
+        <th width="10%">
+            Release Year
+        </th>
+        <th width="15%">
+            Genre
+        </th>
+        <th width="20%">
+            Director(s)
+        </th>
+        <th width="20%">
+            Producer(s)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (counter % 2 == 0)
+        {
+            bgColor = "#e8eef4";
+        }
+        else
+        {
+            bgColor = "white";
+        }
+        bRecFound = true;
+        titleId = item.TitleId;
+        relYear = item.ReleaseYear;
+        description = item.Description;
+        genre = item.GenreName;
+        titleName = item.TitleName;
+        role = item.Role;
+        partName = item.Participant;
+
+        if ((titleId != prevTitleId) && (prevTitleId != 0))
+        {
+
+            if (genreString.Length > 0)
+            {
+                genreString = genreString.Substring(1, genreString.Length - 1);
+            }
+            if (prodString.Length > 0)
+            {
+                prodString = prodString.Substring(1, prodString.Length - 1);
+            }
+            if (dirString.Length > 0)
+            {
+                dirString = dirString.Substring(1, dirString.Length - 1);
+            }
+           
+            
+
+        <tr  bgcolor=@bgColor>
+            <td align="center">@counter.
+            </td>
+            <td>
+                @Html.ActionLink(@prevTitleName, "Details", new { id = prevTitleId })
+                <br />
+                @Html.DisplayFor(modelItem => prevDescription)...more
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modelItem => prevRelYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => genreString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => dirString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => prodString)
+            </td>
+        </tr>
+            counter = counter + 1;
+        }
+        else
+        {
+            bool genreExists = genre.All(s => genreString.Contains(s));
+            if (!(genreExists))
+            {
+                genreString = genreString + ", " + genre;
+            }
+
+            //}
+            if (role == "Producer")
+            {
+                bool prodExists = partName.All(a => prodString.Contains(a));
+                if (!(prodExists))
+                {
+                    prodString = prodString + ", " + partName;
+                }
+
+            }
+            else
+            {
+                bool dirExists = partName.All(a => dirString.Contains(a));
+                if (!(dirExists))
+                {
+                    dirString = dirString + ", " + partName;
+                }
+
+            }
+        }
+        if (prevTitleId != titleId)
+        {
+            genreString = "";
+            dirString = "";
+            prodString = "";
+            genreString = genreString + "," + genre;
+            if (role == "Director")
+            {
+
+                dirString = dirString + ", " + partName;
+            }
+            else if (role == "Producer")
+            {
+
+                prodString = prodString + ", " + partName;
+            }
+        }
+        prevTitleId = titleId;
+        prevGenre = genre;
+        prevRelYear = relYear;
+        prevDescription = description;
+        prevTitleName = titleName;
+        prevRole = role;
+        prevPartName = partName;
+
+
+    }
+    @{if (!(bRecFound))
+      {
+          <b>No Records found.</b>
+      }
+    else
+      {
+          if (genreString.Length > 0)
+          {
+              genreString = genreString.Substring(1, genreString.Length - 1);
+          }
+          if (prodString.Length > 0)
+          {
+              prodString = prodString.Substring(1, prodString.Length - 1);
+          }
+          if (dirString.Length > 0)
+          {
+              dirString = dirString.Substring(1, dirString.Length - 1);
+          }
+
+
+      
+        <tr  bgcolor=@bgColor>
+            <td align=center>@counter
+            </td>
+            <td>
+                @Html.ActionLink(@prevTitleName, "Details", new { id = prevTitleId })
+                <br />
+                @Html.DisplayFor(modelItem => prevDescription)...more
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => prevRelYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => genreString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => dirString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => prodString)
+            </td>
+        </tr>
+        }
+    }
+</table>

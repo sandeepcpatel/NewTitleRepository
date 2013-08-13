@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TitleHunt.Models.TitleView>
+@{
+    ViewBag.Title = "Details";
+    bool bDisplayRec = true;
+}
+@foreach (var item in Model)
+{
+    if (bDisplayRec)
+    {
+    <table width="100%" cellpadding="0">
+        <tr>
+            <td width="35%" valign="top">
+            <h1>@Html.DisplayFor(model => item.TitleName)&nbsp;(@Html.DisplayFor(model => item.ReleaseYear))</h1><br />
+                <img src="../../Content/images/coming_soon.jpg" /><br />
+                
+            </td>
+        </tr>
+    </table>
+        bDisplayRec = false;
+    }
+}

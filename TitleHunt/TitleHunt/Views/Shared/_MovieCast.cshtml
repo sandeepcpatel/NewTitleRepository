@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TitleHunt.Models.TitleView>
+@{
+    ViewBag.Title = "Details";
+    string particpantType = "";
+    string roleType = "";
+    string personName = "";
+    bool? isKey = false;
+    bool? isOnScreen = false;
+    string dirString = "";
+    string prevDir = "";
+    string prodString = "";
+    string prevProd = "";
+    string keyString = "";
+    string prevKey = "";
+    string prevCast = "";
+    string castString = "";
+        
+}
+@foreach (var item in Model)
+{
+    roleType = item.Role;
+    personName = item.Participant;
+    isKey = item.IsKey;
+    isOnScreen = item.IsOnScreen;
+    particpantType = item.ParticipantType;
+
+
+
+    if (roleType == "Director")
+    {
+        bool bDirExists = personName.All(a => dirString.Contains(a));
+        if (!(bDirExists))
+        {
+            dirString = dirString + ", " + personName;
+        }
+        prevDir = personName;
+    }
+    else if (roleType == "Producer")
+    {
+        bool bProdExists = personName.All(a => prodString.Contains(a));
+        if (!(bProdExists))
+        {
+            prodString = prodString + ", " + personName;
+        }
+        prevProd = personName;
+    }
+
+    if ((isOnScreen == true) && (particpantType == "Person") && (roleType == "Actor"))
+    {
+        if (isKey == true)
+        {
+            bool bKeyExists = personName.All(a => keyString.Contains(a));
+            if (!(bKeyExists))
+            {
+                keyString = keyString + ", " + personName;
+            }        
+        }
+        else 
+        {
+            bool bCastExists = personName.All(c => castString.Contains(c));
+            if (!(bCastExists))
+            {
+                castString = castString + ", " + personName;
+            }
+            prevCast = personName;
+        
+        }
+        prevKey = personName;
+        
+    }
+}
+@{
+    if (dirString.Length > 0)
+    {
+        dirString = dirString.Substring(1, dirString.Length - 1);
+    }
+    if (prodString.Length > 0)
+    {
+        prodString = prodString.Substring(1, prodString.Length - 1);
+    }
+    if (keyString.Length > 0)
+    {
+        keyString = keyString.Substring(1, keyString.Length - 1);
+    }
+    if (castString.Length > 0)
+    {
+        castString = castString.Substring(1, castString.Length - 1);
+    }   
+}
+@dirString
+<h3>Producer(s):</h3>
+@prodString
+<h3>Lead Cast:</h3>
+@keyString
+<h3>Also starring:</h3>
+@castString
